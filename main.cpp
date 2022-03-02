@@ -7,12 +7,16 @@ auto isClose(char brace) -> bool;
 
 auto main() -> int {
     std::string braces = "(([])){}";
-    int len = braces.length();
+    auto len = braces.length();
 
     auto myStack = Stack();
+    auto isCorrect = true;
 
     for(int i = 0; i < len; i++) {
-
+        if(isOpen(braces[i])) {
+            myStack.push(braces[i]);
+            continue;
+        }
     }
 
     return 0;

@@ -62,20 +62,3 @@ auto Stack::pop() -> char {
     data.erase(size, 1);
     return last;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
