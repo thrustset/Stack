@@ -2,25 +2,21 @@
 #include <string>
 #include <iostream>
 
-#define MAXSIZE 100
-
 class Stack {
 private:
     std::string data;
-    int size;
+    int len;
 public:
     Stack();
     ~Stack();
 
-    auto isFull() const -> bool;
-    auto isEmpty() const -> bool;
+    auto isEmpty() const            -> bool;
+    auto isSame(char brace) const   -> bool;
 
-    static auto printFull() -> void;
-    static auto printEmpty() -> void;
+    auto push(char symb)    -> void;
 
-    auto print() const -> void;
+    auto get() const    -> char;
+    auto pop()          -> char;
 
-    auto push(char symb) -> void;
-    auto push(const std::string& str) -> void;
-    auto pop() -> char;
+    auto friend operator<<(std::ostream &os, Stack const &stack) -> std::ostream &;
 };

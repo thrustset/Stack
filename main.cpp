@@ -1,37 +1,39 @@
 #include <iostream>
 
 #include "stack.hpp"
-
-auto isOpen(char brace) -> bool;
-auto isClose(char brace) -> bool;
+#include "functions.hpp"
 
 auto main() -> int {
-    std::string braces = "(([])){}";
+    std::string braces = "(((()[a]{b}{{c}})))";
     auto len = braces.length();
 
     auto myStack = Stack();
     auto isCorrect = true;
 
     for(int i = 0; i < len; i++) {
+        std::cout << "i = " << i << ":\t";
+        std::cout << myStack;
+
+        if(isAnother(braces[i])) {
+            continue;
+        }
         if(isOpen(braces[i])) {
             myStack.push(braces[i]);
             continue;
         }
+
+        if(myStack.isSame(braces[i])) {
+            myStack.pop();
+        } else {
+            isCorrect = false;
+            break;
+        }
     }
 
+    if(!myStack.isEmpty())
+        isCorrect = false;
+
+    std::cout << "\n" << "is correct? - " << isCorrect << "\n";
+
     return 0;
-}
-
-
-
-auto isOpen(char brace) -> bool {
-    if(brace == '(' || brace == '[' || brace == '{')
-        return true;
-    return false;
-}
-
-auto isClose(char brace) -> bool {
-    if(brace == ')' || brace == ']' || brace == '}')
-        return true;
-    return false;
 }
